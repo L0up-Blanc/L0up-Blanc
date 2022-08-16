@@ -69,7 +69,7 @@ async def play(ctx, url):
     client = ctx.guild.voice_client
     if client and client.channel:
         video = Video(url)
-        musics(ctx.guild).append(video)
+        musics[ctx.guild].append(video)
     else:
         channel = ctx.author.voice.channel
         video = Video(url)
