@@ -8,7 +8,7 @@ intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix="!", intents = intents)
 
-status = ["!help", "Bot Discord de Nethire", "Développeur LoupBlanc", "https://discord.gg/wFrP8FT9DX"]
+status = ["!help", "Bot Discord de Nethire", "Développeur LoupBlanc#9056", "https://discord.gg/wFrP8FT9DX"]
 
 @bot.event
 async def on_ready():
@@ -30,7 +30,7 @@ async def changeStatus():
 
 @bot.event
 async def on_member_join(member):
-    embed = discord.Embed(title="Arrivant", description=f"Bienvenu(e) {member.mention} sur Game Chill. Nous sommes maintenant {member.guild.member_count}")
+    embed = discord.Embed(title="Arrivant", description=f"Bienvenu(e) {member.mention} sur Nethire. Nous sommes maintenant {member.guild.member_count}")
     embed.set_thumbnail(url="https://tse4.mm.bing.net/th?id=OIP.GfVALvGzUzfRCGI5nkEuFgHaDt&pid=Api&P=0")
     welcome_channel = discord.utils.get(member.guild.channels, name="aéroport")
     await welcome_channel.send(embed=embed)
