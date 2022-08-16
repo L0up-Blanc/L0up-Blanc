@@ -7,6 +7,7 @@ import random
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix="!", intents = intents)
+bot.remove_command("help")
 
 status = ["!help", "Bot Discord de Nethire", "Développeur LoupBlanc#9056", "https://discord.gg/wFrP8FT9DX"]
 
