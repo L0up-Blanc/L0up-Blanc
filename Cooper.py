@@ -125,18 +125,19 @@ async def getMutedRole(ctx):
         if role.name == "Muted":
             return role
     return await createMutedRole(ctx)
-    
+
 @bot.command()
-@commands.has_permissions(mute_members=True)
+@commands.has_permissions(kick_members=True)
 async def mute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
     mutedRole = await getMutedRole(ctx)
     await member.add_roles(mutedRole, reason = reason)
     await ctx.send(f"{member.mention} a été mute")
 
 @bot.command()
-@commands.has_permissions(mute_members=True)
+@commands.has_permissions(kick_members=True)
 async def unmute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
     mutedRole = await getMutedRole(ctx)
     await member.remove_roles(mutedRole, reason = reason)
+    await ctx.send(f"{member.mention} a été unmute")
 
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
