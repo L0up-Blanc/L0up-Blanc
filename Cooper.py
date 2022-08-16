@@ -114,4 +114,26 @@ async def unban(ctx, user, *reason):
     logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
     await logs_channel.send(f"L'utilisateur {user} n'est pas dans la liste des bans")
 
+async def createMutedRole(ctx):
+    mutedRole = await ctx.guild.create_role(name = "Muted", permissions = discord.Permissions(send_messages = False, speak = False), reason = "Crétation du role Muted pour mute des gens")
+    for channel in ctx.guild.Channels:
+        await channel.set_permissions(mutedRole, send_messages = False, speak = False)
+    return mutedRole
+async def getMutedRole(ctx):
+    roles = ctx.guild.roles
+    for role in roles:
+        if role.name == "Muted":
+            return role
+    return await createMutedRole(ctx)
+@bot.command()
+async def mute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
+    mutedRole = await getMutedRole(ctx)
+    await member.add_roles(mutedRole, reason = reason)
+    await ctx.send(f"{member.mention} a été mute")
+
+@bot.command()
+async def unmute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
+    mutedRole = await getMutedRole(ctx)
+    await member.remove_roles(mutedRole, reason = reason)
+    
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
