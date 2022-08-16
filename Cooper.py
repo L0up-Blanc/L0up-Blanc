@@ -141,4 +141,10 @@ async def unmute(ctx, member : discord.Member, *, reason = "Aucune raison n'a é
     await member.remove_roles(mutedRole, reason = reason)
     await ctx.send(f"{member.mention} a été unmute")
 
+@bot.command()
+async def help(ctx):
+    embed = discord.Embed(title="Help", description="Voici toute les commandes proposer par le bot")
+    embed.set_thumbnail(url="https://tse1.mm.bing.net/th?id=OIP.R5NtROuWMQugf9qYKouA5gHaIU&pid=Api&P=0")
+    await ctx.send(embed=embed)
+
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
