@@ -125,6 +125,7 @@ async def getMutedRole(ctx):
         if role.name == "Muted":
             return role
     return await createMutedRole(ctx)
+    
 @bot.command()
 @commands.has_permissions(mute_members=True)
 async def mute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
