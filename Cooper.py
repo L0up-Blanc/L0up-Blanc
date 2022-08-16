@@ -28,6 +28,29 @@ class Video:
         self.url = video["webpage_url"]
         self.stream_url = video_format["url"]
 
+@bot.command()
+async def leave(ctx):
+    client = ctx.guild.voice_client
+    await client.disconnect()
+    musics[ctx.guild] = []
+
+@bot.command()
+async def resume(ctx):
+    client = ctx.guild.voice_client
+    if client.is_paused():
+        client.resume()
+
+@bot.command()
+async def pause(ctx):
+    client = ctx.guild.voice_client
+    if not client.is_paused():
+        client.pause()
+
+@bot.command()
+async def skip(ctx):
+    client = ctx.guild.voice_client
+    client.stop()
+
 def play_song(client, queue, song):
     source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song.stream_url, before_options="-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5"))
     def next(_):
