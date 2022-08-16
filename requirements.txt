@@ -1,5 +1,2 @@
 git+https://github.com/Rapptz/discord.py
-dnspython==1.16.0
-random
-datetime
-ast
+discord.py==1.7.3
