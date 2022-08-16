@@ -59,7 +59,7 @@ def play_song(client, queue, song):
             del queue[0]
             play_song(client, queue, new_song)
         else:
-            asyncio.run_corountine_threadsage(client.disconnect(), bot.loop)
+            asyncio.run_coroutine_threadsafe(client.disconnect(), bot.loop)
 
     client.play(source, after=next)
 
