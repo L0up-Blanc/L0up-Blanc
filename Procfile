@@ -1,1 +1,1 @@
-Commande ECHO activ�e.
+worker: python Cooper.py 
