@@ -204,7 +204,7 @@ async def unmute(ctx, member : discord.Member, *, reason = "Aucune raison n'a é
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Help", description="Voici toute les commandes proposer par le bot \n !ban \n !clear \n !help \n !interval \n !kick \n !mute \n !unban \n !unmute")
+    embed = discord.Embed(title="Help", description="Voici toute les commandes proposer par le bot \n !help \n **Commande Modérateur** \n !ban \n !clear \n !interval \n !kick \n !mute \n !unban \n !unmute \n **Commande musical** \n !play \n !skip \n !stop \n resume \n leave")
     embed.set_thumbnail(url="https://tse1.mm.bing.net/th?id=OIP.R5NtROuWMQugf9qYKouA5gHaIU&pid=Api&P=0")
     await ctx.send(embed=embed)
 
