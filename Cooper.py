@@ -128,9 +128,12 @@ async def on_typing(channel, user, when):
     logs_channel = discord.utils.get(channel.guild.channels, name="logs")
     await logs_channel.send(f"{user.name} a commencé à écrire dans un channel le {when} + 2 heures")
 
+def ban_channel(ctx):
+    return ctx.message.channel.id == 1009953309806841966
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
+@commands.check(ban_channel)
 async def ban(ctx, user : discord.User, *, reason = "Aucune raison n'a été donné"):
     await ctx.guild.ban(user, reason = reason)
     embed = discord.Embed(title = "**Banissement**", description = "Un modérateur a frappé !", url = "https://discord.gg/Pkh7DQ2QAa", color=0xfa8072)
