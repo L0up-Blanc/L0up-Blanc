@@ -208,4 +208,17 @@ async def help(ctx):
     embed.set_thumbnail(url="https://tse1.mm.bing.net/th?id=OIP.R5NtROuWMQugf9qYKouA5gHaIU&pid=Api&P=0")
     await ctx.send(embed=embed)
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Commande introuvable")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque un argument")
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Vous n'avez pas les permissions requise pour faire cette commande")
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("Vous ne pouvez pas utilisez cette commande")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas les permissions nécéssaire pour faire cette commande")
+
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
