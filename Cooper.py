@@ -225,8 +225,8 @@ async def on_command_error(ctx, error):
         await ctx.send("Il manque un argument")
     if isinstance(error, commands.MissingPermissions):
         await ctx.send("Vous n'avez pas les permissions requise pour faire cette commande")
-    if isinstance(error, commands.CheckFailure):
-        await ctx.send("Vous ne pouvez pas utilisez cette commande")
+#    if isinstance(error, commands.CheckFailure):
+#        await ctx.send("Vous ne pouvez pas utilisez cette commande")
     if isinstance(error.original, discord.Forbidden):
         await ctx.send("Je n'ai pas les permissions nécéssaire pour faire cette commande")
 
