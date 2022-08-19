@@ -234,7 +234,9 @@ gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47
 
 @bot.command()
 async def kiss(ctx, member : discord.Member):
-    await ctx.send(f"{ctx.author.name} embrasse {member.mention}" random.choice(gif_kiss))
+    author = ctx.author.name
+    kiss = random.choice(gif_kiss)
+    await ctx.send(f"{author} embrasse {member.mention} {kiss}")
 
 
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
