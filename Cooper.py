@@ -148,7 +148,7 @@ async def ban(ctx, user : discord.User, *, reason = "Aucune raison n'a été don
 @ban.error 
 async def ban_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
-        await ctx.send("La commande n'a pas été faire dans le bon salon")
+        await ctx.send("La commande n'a pas été faite dans le bon salon")
         await ctx.send("Veuillez faire la commande dans le bon salon")
 
 @bot.command()
