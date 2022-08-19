@@ -233,8 +233,8 @@ async def on_command_error(ctx, error):
 gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media4.giphy.com/media/HN0vI0nbR9jX2/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media3.giphy.com/media/EVODaJHSXZGta/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g"]
 
 @bot.command()
-async def kiss(ctx):
-    await ctx.send(random.choice(gif_kiss))
+async def kiss(ctx, member : discord.Member):
+    await ctx.send(f"{ctx.author.name} embrasse {member.mention}" random.choice(gif_kiss))
 
 
 bot.run("MTAwODMzMDg1NTA3ODQ0NTA4Ng.G3oXWO.ka76kAjrUm7k2Q8BfiRivl3Mpzn4qTFOcl4HcE")
