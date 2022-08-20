@@ -110,7 +110,10 @@ async def on_message(message):
     logs_channel = discord.utils.get(message.guild.channels, name="logs")
     if message.author == bot.user:
         return
-    await logs_channel.send(f"**{message.author}** à écrit \n > {message.content}")
+    embed = discord.Embed(titre = "**Message envoyer**")
+    embed.add_field(name = "Le membre", value = message.author, inline = True)
+    embed.add_field(name = "A envoyer", value = message.content, inline = True)
+    await logs_channel.send(embed = embed)
     await bot.process_commands(message)
 
 @bot.event
@@ -120,15 +123,6 @@ async def on_message_delete(message):
     embed.add_field(name = "Le message de", value = message.author, inline = True)
     embed.add_field(name = "A été supprimé \n Message supprimé:", value = message.content, inline = True)
     await logs_channel.send(embed = embed)
-
-gif_kiss = ["https://c.tenor.com/-FL3wqNmAtEAAAAC/beijo-kiss.gif"]
-
-@bot.command()
-async def kiss(ctx, user : discord.User):
-    embed = discord.Embed(titre = "Kiss")
-    gifs_kiss = random.choice(gif_kiss)
-    embed.add_field(name = f"{ctx.author} embrasse {user}", url = gifs_kiss, inline = False)
-    await ctx.send(embed = embed)
 
 @bot.event
 async def on_message_edit(before, after):
