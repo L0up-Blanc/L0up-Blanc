@@ -121,14 +121,14 @@ async def on_message_delete(message):
     embed.add_field(name = "A été supprimé \n Message supprimé:", value = message.content, inline = True)
     await logs_channel.send(embed = embed)
 
-gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g.gif", "https://media4.giphy.com/media/HN0vI0nbR9jX2/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g.gif", "https://media3.giphy.com/media/EVODaJHSXZGta/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g.gif"]
+gif_kiss = ["https://c.tenor.com/-FL3wqNmAtEAAAAC/beijo-kiss.gif"]
 
 @bot.command()
 async def kiss(ctx, user : discord.User):
     embed = discord.Embed(titre = "Kiss")
     gifs_kiss = random.choice(gif_kiss)
     embed.add_field(name = f"{ctx.author} embrasse {user}")
-    embed.set_image(url = gif_kiss)
+    embed.set_image(url = gifs_kiss)
     await ctx.send(embed = embed)
 
 @bot.event
