@@ -124,10 +124,10 @@ async def on_message_delete(message):
 gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media4.giphy.com/media/HN0vI0nbR9jX2/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media3.giphy.com/media/EVODaJHSXZGta/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g"]
 
 @bot.command()
-async def kiss(ctx, user : discord.User, message):
+async def kiss(ctx, user : discord.User):
     embed = discord.Embed(titre = "Kiss")
     gifs_kiss = random.choice(gif_kiss)
-    embed.add_field(name = f"{message.author} embrasse {user}", value = gifs_kiss, inline = False)
+    embed.add_field(name = f"{ctx.author} embrasse {user}", value = gifs_kiss, inline = False)
     await ctx.send(embed = embed)
 
 @bot.event
