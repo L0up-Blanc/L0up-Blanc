@@ -122,10 +122,10 @@ async def on_message_delete(message):
 async def on_message_edit(before, after, when):
     logs_channel = discord.utils.get(before.guild.channels, name="logs")
     embed = discord.Embed(titre = "**Message editer**")
-    embed.set_thumbnail(when)
     embed.set_author(name = before.author, icon_url = before.author.avatar_url)
     embed.add_field(name = "Message d'avant", value = before.content, inline = True)
     embed.add_field(name = "Message modifier", value = after.content, inline = True)
+    embed.add_field(name = "Horaire", value = when, inline = True)
     await logs_channel.send(embed = embed)
 
 @bot.event 
