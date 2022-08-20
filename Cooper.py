@@ -145,6 +145,10 @@ async def ban(ctx, user : discord.User, *, reason = "Aucune raison n'a été don
 async def ban_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send("Pour pouvoir faire la commande !ban il vous faut la permission de ban un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque la mention de la personne que vous souhaitez ban")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de ban des membres")
 
 @bot.command()
 @commands.has_permissions(kick_members=True)
@@ -212,18 +216,18 @@ async def help(ctx):
     embed.set_thumbnail(url="https://tse1.mm.bing.net/th?id=OIP.R5NtROuWMQugf9qYKouA5gHaIU&pid=Api&P=0")
     await ctx.send(embed=embed)
 
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("Commande introuvable")
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send("Il manque un argument")
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send("Vous n'avez pas les permissions requise pour faire cette commande")
+#@bot.event
+#async def on_command_error(ctx, error):
+#    if isinstance(error, commands.CommandNotFound):
+#        await ctx.send("Commande introuvable")
+#    if isinstance(error, commands.MissingRequiredArgument):
+#        await ctx.send("Il manque un argument")
+#    if isinstance(error, commands.MissingPermissions):
+#        await ctx.send("Vous n'avez pas les permissions requise pour faire cette commande")
 #    if isinstance(error, commands.CheckFailure):
 #        await ctx.send("Vous ne pouvez pas utilisez cette commande")
-    if isinstance(error.original, discord.Forbidden):
-        await ctx.send("Je n'ai pas les permissions nécéssaire pour faire cette commande")
+#    if isinstance(error.original, discord.Forbidden):
+#        await ctx.send("Je n'ai pas les permissions nécéssaire pour faire cette commande")
 
 gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media4.giphy.com/media/HN0vI0nbR9jX2/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media3.giphy.com/media/EVODaJHSXZGta/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g"]
 
