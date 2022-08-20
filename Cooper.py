@@ -173,6 +173,7 @@ async def clear(ctx, nombre: int):
 @bot.command()
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, user, *reason):
+    logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
     reason = " ".join(reason)
     userName, userId = user.split("#")
     bannedUsers = await ctx.guild.bans()
@@ -181,7 +182,6 @@ async def unban(ctx, user, *reason):
             await ctx.guild.unban(i.user, reason=reason)
             await ctx.send(f"{user} à été unban.")
             return
-    logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
     await logs_channel.send(f"L'utilisateur {user} n'est pas dans la liste des bans")
 
 async def createMutedRole(ctx):
