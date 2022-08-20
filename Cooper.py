@@ -118,7 +118,7 @@ async def on_message_delete(message):
     logs_channel = discord.utils.get(message.guild.channels, name="logs")
     embed = discord.Embed(titre = "**Message supprimé**")
     embed.add_field(name = "Le message de", value = message.author, inline = True)
-    embed.add_field(name = "A été supprimé", value = message.content, inline = True)
+    embed.add_field(name = "A été supprimé \n message supprimé", value = message.content, inline = True)
     await logs_channel.send(embed = embed)
 
 @bot.event
