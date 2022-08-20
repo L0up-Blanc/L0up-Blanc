@@ -180,7 +180,7 @@ async def unban(ctx, user, *reason):
     for i in bannedUsers:
         if i.user.name == userName and i.user.discriminator == userId:
             await ctx.guild.unban(i.user, reason=reason)
-            await ctx.send(f"{user} à été unban.")
+            await logs_channel.send(f"{user} à été unban.")
             return
     await logs_channel.send(f"L'utilisateur {user} n'est pas dans la liste des bans")
 
