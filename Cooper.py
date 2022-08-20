@@ -127,8 +127,7 @@ gif_kiss = ["https://c.tenor.com/-FL3wqNmAtEAAAAC/beijo-kiss.gif"]
 async def kiss(ctx, user : discord.User):
     embed = discord.Embed(titre = "Kiss")
     gifs_kiss = random.choice(gif_kiss)
-    embed.add_field(name = f"{ctx.author} embrasse {user}")
-    embed.set_image(url = gifs_kiss)
+    embed.add_field(name = f"{ctx.author} embrasse {user}", value = gifs_kiss, inline = False)
     await ctx.send(embed = embed)
 
 @bot.event
