@@ -118,8 +118,17 @@ async def on_message_delete(message):
     logs_channel = discord.utils.get(message.guild.channels, name="logs")
     embed = discord.Embed(titre = "**Message supprimé**")
     embed.add_field(name = "Le message de", value = message.author, inline = True)
-    embed.add_field(name = "A été supprimé \n message supprimé", value = message.content, inline = True)
+    embed.add_field(name = "A été supprimé \n Message supprimé:", value = message.content, inline = True)
     await logs_channel.send(embed = embed)
+
+gif_kiss = ["https://media0.giphy.com/media/MQVpBqASxSlFu/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media4.giphy.com/media/HN0vI0nbR9jX2/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g", "https://media3.giphy.com/media/EVODaJHSXZGta/200w.webp?cid=ecf05e47fqs3yt22a7jjxysefycwbks3gvg835lxz8n4w3js&rid=200w.webp&ct=g"]
+
+@bot.command()
+async def kiss(ctx, user : discord.User, message):
+    embed = discord.Embed(titre = "Kiss")
+    gifs_kiss = random.choice(gif_kiss)
+    embed.add_field(name = f"{message.author} embrasse {user}", value = gifs_kiss, inline = False)
+    await ctx.send(embed = embed)
 
 @bot.event
 async def on_message_edit(before, after):
