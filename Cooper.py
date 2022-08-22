@@ -173,12 +173,30 @@ async def kick(ctx, user: discord.User, *, reason = "Aucune raison n'a été don
     logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
     await logs_channel.send(embed = embed)
 
+@kick.error 
+async def kick_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Pour pouvoir faire la commande !kick il vous faut la permission de kick un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque la mention de la personne que vous souhaitez kick")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de kick des membres")
+
 @bot.command()
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, nombre: int):
     messages = await ctx.channel.history(limit=nombre + 1).flatten()
     for message in messages:
         await message.delete()
+
+@clear.error 
+async def clear_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Pour pouvoir faire la commande !clear il vous faut la permission de supprimer un message un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque le nombre de message que vous souhaitez supprimez")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de supprimer des messages")
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
@@ -193,6 +211,15 @@ async def unban(ctx, user, *reason):
             await logs_channel.send(f"{user} à été unban.")
             return
     await logs_channel.send(f"L'utilisateur {user} n'est pas dans la liste des bans")
+
+@unban.error 
+async def unban_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Pour pouvoir faire la commande !unban il vous faut la permission ban un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque la mention de la personne que vous souhaitez unban")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de unban des membres")
 
 async def createMutedRole(ctx):
     mutedRole = await ctx.guild.create_role(name = "Muted", permissions = discord.Permissions(send_messages = False, speak = False), reason = "Crétation du role Muted pour mute des gens")
@@ -213,12 +240,30 @@ async def mute(ctx, member : discord.Member, *, reason = "Aucune raison n'a ét�
     await member.add_roles(mutedRole, reason = reason)
     await ctx.send(f"{member.mention} a été mute")
 
+@mute.error 
+async def mute_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Pour pouvoir faire la commande !mute il vous faut la permission de kick un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque la mention de la personne que vous souhaitez mute")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de kick des membres")
+
 @bot.command()
 @commands.has_permissions(kick_members=True)
 async def unmute(ctx, member : discord.Member, *, reason = "Aucune raison n'a été renseigné"):
     mutedRole = await getMutedRole(ctx)
     await member.remove_roles(mutedRole, reason = reason)
     await ctx.send(f"{member.mention} a été unmute")
+
+@unmute.error 
+async def unmute_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("Pour pouvoir faire la commande !unmute il vous faut la permission de kick un membre du serveur")
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("Il manque la mention de la personne que vous souhaitez unmute")
+    if isinstance(error.original, discord.Forbidden):
+        await ctx.send("Je n'ai pas la permissions de kick des membres")
 
 @bot.command()
 async def help(ctx):
