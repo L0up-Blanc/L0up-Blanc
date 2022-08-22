@@ -192,7 +192,7 @@ async def clear(ctx, nombre: int):
 @clear.error 
 async def clear_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
-        await ctx.send("Pour pouvoir faire la commande !clear il vous faut la permission de supprimer un message un membre du serveur")
+        await ctx.send("Pour pouvoir faire la commande !clear il vous faut la permission de supprimer un message")
     if isinstance(error, commands.MissingRequiredArgument):
         await ctx.send("Il manque le nombre de message que vous souhaitez supprimez")
     if isinstance(error.original, discord.Forbidden):
