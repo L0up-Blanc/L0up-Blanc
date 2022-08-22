@@ -14,7 +14,7 @@ bot.remove_command("help")
 musics = {}
 ytdl = youtube_dl.YoutubeDL()
 
-status = ["!help", "Bot Discord de Nethire", "Développeur LoupBlanc#9056", "https://discord.gg/wFrP8FT9DX"]
+status = ["!help", "Bot Discord de Nethire", "https://discord.gg/wFrP8FT9DX"]
 
 @bot.event
 async def on_ready():
