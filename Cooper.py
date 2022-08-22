@@ -276,6 +276,10 @@ async def help(ctx):
     embed.set_thumbnail(url="https://tse1.mm.bing.net/th?id=OIP.R5NtROuWMQugf9qYKouA5gHaIU&pid=Api&P=0")
     await ctx.send(embed=embed)
 
+@bot.command()
+async def bitch(ctx):
+    await ctx.send("Salut les bitch")
+
 #@bot.event
 #async def on_command_error(ctx, error):
 #    if isinstance(error, commands.CommandNotFound):
