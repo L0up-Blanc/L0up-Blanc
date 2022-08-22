@@ -200,7 +200,7 @@ async def clear_error(ctx, error):
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
-async def unban(ctx, user, *, reason = "Aucune raison n'a été donné"):
+async def unban(ctx, user, *reason):
     logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
     reason = " ".join(reason)
     userName, userId = user.split("#")
