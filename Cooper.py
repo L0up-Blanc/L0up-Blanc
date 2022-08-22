@@ -200,15 +200,20 @@ async def clear_error(ctx, error):
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
-async def unban(ctx, user, *reason):
+async def unban(ctx, user, *, reason = "Aucune raison n'a été donner"):
+    embed = discord.Embed(title = "**Unban**", descritpion = "Un modérateur à unban un membre", url="https://discord.gg/Pkh7DQ2QAa", color=0xfa8072)
+    embed.set_author(name = ctx.author.name, icon_url = ctx.author.avatar_url, url = "https://discord.gg/Pkh7DQ2QAa")
+    embed.set_thumbnail(url="https://tse2.mm.bing.net/th?id=OIP.hCyUInibYwIvRTvh1xLUfgHaDK&pid=Api&P=0")
+    embed.add_field(name = "Membre Unban", value = user, inline = True)
+    embed.add_field(name = "Raison", value = reason, inline = True)
+    embed.add_field(name = "Modérateur", value = ctx.author.name, inline = True)
     logs_channel = discord.utils.get(ctx.guild.channels, name="logs")
-    reason = " ".join(reason)
     userName, userId = user.split("#")
     bannedUsers = await ctx.guild.bans()
     for i in bannedUsers:
         if i.user.name == userName and i.user.discriminator == userId:
             await ctx.guild.unban(i.user, reason=reason)
-            await logs_channel.send(f"{user} à été unban.")
+            await logs_channel.send(embed = embed)
             return
     await logs_channel.send(f"L'utilisateur {user} n'est pas dans la liste des bans")
 
