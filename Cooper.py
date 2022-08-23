@@ -94,14 +94,14 @@ async def changeStatus():
 async def on_member_join(member):
     embed = discord.Embed(title="Arrivant", description=f"Bienvenu(e) {member.mention} sur Nethire. Nous sommes maintenant {member.guild.member_count}")
     embed.set_thumbnail(url="https://tse4.mm.bing.net/th?id=OIP.GfVALvGzUzfRCGI5nkEuFgHaDt&pid=Api&P=0")
-    welcome_channel = discord.utils.get(member.guild.channels, name="aéroport")
+    welcome_channel = discord.utils.get(member.guild.channels, name="☁【welcome】")
     await welcome_channel.send(embed=embed)
 
 @bot.event
 async def on_member_remove(member):
     embed = discord.Embed(title="Départ", description=f"Aurevoir {member.mention} au plaisir de vous revoir. Nous sommes désormais {member.guild.member_count}")
     embed.set_thumbnail(url="https://tse3.mm.bing.net/th?id=OIP.0IjskOaXShC2fUe-nLQb0gHaEn&pid=Api&P=0")
-    welcome_channel = discord.utils.get(member.guild.channels, name="aéroport")
+    welcome_channel = discord.utils.get(member.guild.channels, name="🌧【goodbye】")
     await welcome_channel.send(embed=embed) 
 
 
